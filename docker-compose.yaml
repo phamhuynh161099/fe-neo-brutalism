@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  node-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    ports: -"3001:3001"
+    networks:
+      - hh_network
+  #mongoDB service
+  mongodb:
+    image: mongo:5.0
+    container_name: mongo-container
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME='admin'
+      - MONGO_INITDB_ROOT_PASSWORD='admin'
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+    networks:
+      - hh_network
+
+volumes:
+  mongo-data:
+
+networks:
+  hh_network:
+    external: false
