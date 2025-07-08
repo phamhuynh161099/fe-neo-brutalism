@@ -11,12 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
       - name: Create .env file
         run: echo "${{secrets.ENV_PRODUCTION}}" > .env
-      - run: npm i --force
-      - run: npm run build
+      - name: Build Docker Image
+        run: docker build --platform linux/amd64 - sakata1301/fe-neo-brustalism:v0 .
+      - name: Login DockerHub
+        run : docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}"
+      - name: Push Docker Image
+        run: docker push sakata1301/fe-neo-brustalism:v0
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy in sv prod (ssh server)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST_PRODUCTION }}
+          username: ${{ secrets.USERNAME_PRODUCTION }}
+          password: ${{ secrets.PASSWORD_PRODUCTION }}
+          port: ${{ secrets.PORT_PRODUCTION }}
+          script: |
+            docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}"
+            docker pull sakata1301/fe-neo-brustalism:v0
+            docker stop prod-fe-neo-brustalism
+            docker rm -f prod-fe-neo-brustalism
+            docker run -itd -p 3333:3000 -v volumn_fe-neo-brustalism:/app --name prod-fe-neo-brustalism sakata1301/fe-neo-brustalism:v0

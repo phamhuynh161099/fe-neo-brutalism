@@ -1,7 +1,6 @@
-Dockerfile
-.dockerignore
 node_modules
 nom-debug.log
 README.md
 .next
 .git
+.github/
