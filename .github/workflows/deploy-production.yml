@@ -35,4 +35,5 @@ jobs:
             docker pull sakata1301/fe-neo-brustalism:v0
             docker stop prod-fe-neo-brustalism
             docker rm -f prod-fe-neo-brustalism
-            docker run -itd -p 3333:3000 -v volumn_fe-neo-brustalism:/app --name prod-fe-neo-brustalism sakata1301/fe-neo-brustalism:v0
+            docker run -itd -p 3333:3000 --name prod-fe-neo-brustalism sakata1301/fe-neo-brustalism:v0
+            # docker run -itd -p 3333:3000 -v volumn_fe-neo-brustalism:/app --name prod-fe-neo-brustalism sakata1301/fe-neo-brustalism:v0
