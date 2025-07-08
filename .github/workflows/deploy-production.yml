@@ -33,6 +33,7 @@ jobs:
           script: |
             docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}"
             docker pull sakata1301/fe-neo-brustalism:v0
+            docker image prune -f
             docker stop prod-fe-neo-brustalism
             docker rm -f prod-fe-neo-brustalism
             docker run -itd -p 3333:3000 --name prod-fe-neo-brustalism sakata1301/fe-neo-brustalism:v0
