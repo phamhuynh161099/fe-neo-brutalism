@@ -34,3 +34,40 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+name: Deploy to Production
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+      - name: Create .env file
+        run: echo "${{secrets.ENV_PRODUCTION}}" > .env
+      - run: npm i --force
+      - run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy in sv prod (ssh server)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST_PRODUCTION }}
+          username: ${{ secrets.USERNAME_PRODUCTION }}
+          password: ${{ secrets.PASSWORD_PRODUCTION }}
+          port: ${{ secrets.PORT_PRODUCTION }}
+          script: |
