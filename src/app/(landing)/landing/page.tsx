@@ -1,6 +1,12 @@
 "use client";
-import HeroSection from "@/app/(landing)/landing/_components/hero-section";
 import React, { useRef, useEffect, useState } from "react";
+import HeroSection from "./_components/hero-section";
+import MainSection from "./_components/main-section";
+
+import "../../../../public/css/lading.css";
+import Demo from "./_components/demo-scroll";
+import OurusersSaySection from "./_components/our-users-say-section";
+import AboutUsSection from "./_components/about-us-section";
 
 const SnapScrollingSections = () => {
   const containerRef = useRef(null);
@@ -9,6 +15,22 @@ const SnapScrollingSections = () => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   const sections = [
+    {
+      id: "1",
+      title: "Welcome to the Future",
+      subtitle: "Experience seamless design",
+      content: "Discover innovation at its finest with cutting-edge technology",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
+    },
+    {
+      id: "2",
+      title: "Welcome to the Future",
+      subtitle: "Experience seamless design",
+      content: "Discover innovation at its finest with cutting-edge technology",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
+    },
     {
       id: "hero",
       title: "Welcome to the Future",
@@ -69,6 +91,7 @@ const SnapScrollingSections = () => {
     let scrollTimeout: any;
 
     const handleScroll = () => {
+      console.log("run function main scroll");
       setIsScrolling(true);
       clearTimeout(scrollTimeout);
 
@@ -154,7 +177,7 @@ const SnapScrollingSections = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       {/* Animated background particles */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-40">
+      {/* <div className="fixed inset-0 overflow-hidden pointer-events-none opacity-40">
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -167,7 +190,7 @@ const SnapScrollingSections = () => {
             }}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-black/20 z-50">
@@ -233,13 +256,14 @@ const SnapScrollingSections = () => {
           msOverflowStyle: "none",
         }}
       >
-        <style jsx>{`
+        {/* <style jsx>{`
           div::-webkit-scrollbar {
             display: none;
           }
-        `}</style>
-
-      
+        `}</style> */}
+        <MainSection />
+        <AboutUsSection />
+        <OurusersSaySection />
         {sections.map((section, index) => (
           <section
             key={section.id}
@@ -326,7 +350,7 @@ const SnapScrollingSections = () => {
                     </div>
                   )}
 
-                  {section.id === "about" && (
+                  {/* {section.id === "about" && (
                     <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                       {["Innovation", "Quality", "Excellence"].map(
                         (item, i) => (
@@ -428,171 +452,30 @@ const SnapScrollingSections = () => {
                   )}
 
                   {section.id === "footer" && (
-                    // <div className="space-y-8 max-w-2xl mx-auto">
-                    //   <GlassCard className="p-6">
-                    //     <div className="flex justify-center gap-8 text-lg">
-                    //       {["Privacy", "Terms", "Support"].map((item) => (
-                    //         <a
-                    //           key={item}
-                    //           href="#"
-                    //           className="hover:text-blue-300 transition-colors duration-300 font-light"
-                    //         >
-                    //           {item}
-                    //         </a>
-                    //       ))}
-                    //     </div>
-                    //   </GlassCard>
-                    //   <div className="space-y-3 text-white/60 text-center">
-                    //     <p className="text-sm font-light">
-                    //       © 2024 Premium Design Studio
-                    //     </p>
-                    //     <p className="text-xs opacity-50">
-                    //       Crafted with ❤️ using Apple Glass Design
-                    //     </p>
-                    //   </div>
-                    // </div>
-                    <>
-                      {/* Footer Section */}
-                      <footer className="bg-gray-900 text-white relative">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
-
-                        <div className="container mx-auto px-6 py-16">
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-                            <div className="lg:col-span-2">
-                              <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                                YourCompany
-                              </h3>
-                              <p className="text-gray-300 mb-6 leading-relaxed">
-                                Chúng tôi tạo ra những trải nghiệm web tuyệt vời
-                                với công nghệ hiện đại và thiết kế sáng tạo. Đội
-                                ngũ chuyên nghiệp của chúng tôi luôn sẵn sàng
-                                biến ý tưởng của bạn thành hiện thực.
-                              </p>
-
-                              <div className="flex space-x-4">
-                                {[
-                                  "Facebook",
-                                  "Twitter",
-                                  "LinkedIn",
-                                  "Instagram",
-                                ].map((social, idx) => (
-                                  <button
-                                    key={social}
-                                    className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-110"
-                                    title={social}
-                                  >
-                                    <span className="text-sm font-bold">
-                                      {social[0]}
-                                    </span>
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            {[].map((column, index) => (
-                              <div key={index} className="space-y-4">
-                                <h4 className="text-xl font-semibold mb-4 text-white">
-                                  {column.title}
-                                </h4>
-                                <ul className="space-y-3">
-                                  {column.links.map((link, linkIndex) => (
-                                    <li key={linkIndex}>
-                                      <button className="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 transform inline-block">
-                                        {link}
-                                      </button>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </div>
-
-                          <div className="border-t border-gray-800 pt-12 mb-12">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                              <div>
-                                <h4 className="text-2xl font-bold mb-4">
-                                  Đăng ký nhận tin tức
-                                </h4>
-                                <p className="text-gray-300">
-                                  Nhận những cập nhật mới nhất và ưu đãi đặc
-                                  biệt từ chúng tôi.
-                                </p>
-                              </div>
-                              <div className="flex flex-col sm:flex-row gap-4">
-                                <input
-                                  type="email"
-                                  placeholder="Nhập email của bạn..."
-                                  className="flex-1 px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:border-purple-500 focus:outline-none transition-colors duration-300"
-                                />
-                                <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105">
-                                  Đăng ký
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 p-6 bg-gray-800 rounded-xl">
-                            <div className="text-center">
-                              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-white font-bold">📧</span>
-                              </div>
-                              <h5 className="font-semibold mb-2">Email</h5>
-                              <p className="text-gray-300">
-                                contact@yourcompany.com
-                              </p>
-                            </div>
-
-                            <div className="text-center">
-                              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-white font-bold">📞</span>
-                              </div>
-                              <h5 className="font-semibold mb-2">Điện thoại</h5>
-                              <p className="text-gray-300">+84 123 456 789</p>
-                            </div>
-
-                            <div className="text-center">
-                              <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-white font-bold">📍</span>
-                              </div>
-                              <h5 className="font-semibold mb-2">Địa chỉ</h5>
-                              <p className="text-gray-300">
-                                123 Đường ABC, Quận XYZ, TP.HCM
-                              </p>
-                            </div>
-                          </div>
+                    <div className="space-y-8 max-w-2xl mx-auto">
+                      <GlassCard className="p-6">
+                        <div className="flex justify-center gap-8 text-lg">
+                          {["Privacy", "Terms", "Support"].map((item) => (
+                            <a
+                              key={item}
+                              href="#"
+                              className="hover:text-blue-300 transition-colors duration-300 font-light"
+                            >
+                              {item}
+                            </a>
+                          ))}
                         </div>
-
-                        <div className="border-t border-gray-800">
-                          <div className="container mx-auto px-6 py-6">
-                            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                              <p className="text-gray-400 text-sm">
-                                © 2025 YourCompany. Tất cả quyền được bảo lưu.
-                              </p>
-                              <div className="flex flex-wrap gap-6 text-sm text-gray-400">
-                                <button className="hover:text-white transition-colors duration-300">
-                                  Chính sách bảo mật
-                                </button>
-                                <button className="hover:text-white transition-colors duration-300">
-                                  Điều khoản sử dụng
-                                </button>
-                                <button className="hover:text-white transition-colors duration-300">
-                                  Sitemap
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <button
-                          onClick={() => scrollToSection(0)}
-                          className="absolute top-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
-                          title="Về đầu trang"
-                        >
-                          ↑
-                        </button>
-                      </footer>
-                    </>
-                  )}
+                      </GlassCard>
+                      <div className="space-y-3 text-white/60 text-center">
+                        <p className="text-sm font-light">
+                          © 2024 Premium Design Studio
+                        </p>
+                        <p className="text-xs opacity-50">
+                          Crafted with ❤️ using Apple Glass Design
+                        </p>
+                      </div>
+                    </div>
+                  )} */}
                 </div>
               </div>
             </div>
