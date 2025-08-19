@@ -1,12 +1,11 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import HeroSection from "./_components/hero-section";
+import { useEffect, useRef, useState } from "react";
 import MainSection from "./_components/main-section";
 
 import "../../../../public/css/lading.css";
-import Demo from "./_components/demo-scroll";
-import OurusersSaySection from "./_components/our-users-say-section";
 import AboutUsSection from "./_components/about-us-section";
+import OurusersSaySection from "./_components/our-users-say-section";
+import TimelineSection from "./_components/timeline-section";
 
 const SnapScrollingSections = () => {
   const containerRef = useRef(null);
@@ -264,6 +263,7 @@ const SnapScrollingSections = () => {
         <MainSection />
         <AboutUsSection />
         <OurusersSaySection />
+        <TimelineSection />
         {sections.map((section, index) => (
           <section
             key={section.id}
