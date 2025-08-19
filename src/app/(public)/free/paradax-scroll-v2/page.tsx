@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 
 const SnapScrollingSections = () => {
   const containerRef = useRef(null);
@@ -9,81 +9,84 @@ const SnapScrollingSections = () => {
 
   const sections = [
     {
-      id: 'hero',
-      title: 'Welcome to the Future',
-      subtitle: 'Experience seamless design',
-      content: 'Discover innovation at its finest with cutting-edge technology',
-      height: '100vh',
-      bgColor: 'bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900'
+      id: "hero",
+      title: "Welcome to the Future",
+      subtitle: "Experience seamless design",
+      content: "Discover innovation at its finest with cutting-edge technology",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
     },
     {
-      id: 'about',
-      title: 'About Innovation', 
-      subtitle: 'Crafting digital experiences',
-      content: 'We blend creativity with technology to create extraordinary solutions',
-      height: '100vh',
-      bgColor: 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900'
+      id: "about",
+      title: "About Innovation",
+      subtitle: "Crafting digital experiences",
+      content:
+        "We blend creativity with technology to create extraordinary solutions",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900",
     },
     {
-      id: 'services',
-      title: 'Premium Services',
-      subtitle: 'Excellence in every detail',
-      content: 'From concept to completion, we deliver world-class solutions',
-      height: '100vh',
-      bgColor: 'bg-gradient-to-br from-orange-900 via-red-900 to-pink-900'
+      id: "services",
+      title: "Premium Services",
+      subtitle: "Excellence in every detail",
+      content: "From concept to completion, we deliver world-class solutions",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-orange-900 via-red-900 to-pink-900",
     },
     {
-      id: 'portfolio',
-      title: 'Our Portfolio',
-      subtitle: 'Showcasing excellence',
-      content: 'A collection of our finest work and achievements',
-      height: '100vh',
-      bgColor: 'bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900'
+      id: "portfolio",
+      title: "Our Portfolio",
+      subtitle: "Showcasing excellence",
+      content: "A collection of our finest work and achievements",
+      height: "100vh",
+      bgColor:
+        "bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900",
     },
     {
-      id: 'contact',
-      title: 'Get In Touch',
-      subtitle: 'Start your journey',
-      content: 'Ready to transform your vision into reality?',
-      height: '100vh',
-      bgColor: 'bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900'
+      id: "contact",
+      title: "Get In Touch",
+      subtitle: "Start your journey",
+      content: "Ready to transform your vision into reality?",
+      height: "100vh",
+      bgColor: "bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900",
     },
     {
-      id: 'footer',
-      title: 'Thank You',
-      subtitle: 'Stay connected',
-      content: 'Follow us for more incredible experiences',
-      height: '50vh',
-      bgColor: 'bg-gradient-to-br from-black via-gray-900 to-slate-900'
-    }
+      id: "footer",
+      title: "Thank You",
+      subtitle: "Stay connected",
+      content: "Follow us for more incredible experiences",
+      height: "50vh",
+      bgColor: "bg-gradient-to-br from-black via-gray-900 to-slate-900",
+    },
   ];
 
   // Parallax và scroll tracking
   useEffect(() => {
-    const container = containerRef.current;
+    const container: any = containerRef.current;
     if (!container) return;
 
-    let scrollTimeout;
+    let scrollTimeout: any;
 
     const handleScroll = () => {
       setIsScrolling(true);
       clearTimeout(scrollTimeout);
-      
+
       const scrollTop = container.scrollTop;
       const scrollHeight = container.scrollHeight - container.clientHeight;
       const progress = scrollTop / scrollHeight;
       setScrollProgress(progress);
 
       const containerHeight = container.clientHeight;
-      
+
       let currentIdx = 0;
       let accumulatedHeight = 0;
-      
+
       for (let i = 0; i < sections.length; i++) {
-        const sectionHeight = sections[i].height === '100vh' 
-          ? containerHeight 
-          : containerHeight * 0.5;
-          
+        const sectionHeight =
+          sections[i].height === "100vh"
+            ? containerHeight
+            : containerHeight * 0.5;
+
         if (scrollTop < accumulatedHeight + sectionHeight / 2) {
           currentIdx = i;
           break;
@@ -91,7 +94,7 @@ const SnapScrollingSections = () => {
         accumulatedHeight += sectionHeight;
         currentIdx = i + 1;
       }
-      
+
       setCurrentSection(Math.min(currentIdx, sections.length - 1));
 
       scrollTimeout = setTimeout(() => {
@@ -99,46 +102,51 @@ const SnapScrollingSections = () => {
       }, 150);
     };
 
-    container.addEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll);
     return () => {
-      container.removeEventListener('scroll', handleScroll);
+      container.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
   }, []);
 
-  const scrollToSection = (index) => {
-    const container = containerRef.current;
+  const scrollToSection = (index: any) => {
+    const container: any = containerRef.current;
     if (!container) return;
 
     const containerHeight = container.clientHeight;
     let targetScrollTop = 0;
 
     for (let i = 0; i < index; i++) {
-      const sectionHeight = sections[i].height === '100vh' 
-        ? containerHeight 
-        : containerHeight * 0.5;
+      const sectionHeight =
+        sections[i].height === "100vh"
+          ? containerHeight
+          : containerHeight * 0.5;
       targetScrollTop += sectionHeight;
     }
 
     container.scrollTo({
       top: targetScrollTop,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
   // Apple-style glassmorphism component
-  const GlassCard = ({ children, className = "", blur = "backdrop-blur-sm" }) => (
-    <div className={`
+  const GlassCard = ({
+    children,
+    className = "",
+    blur = "backdrop-blur-sm",
+  }: any) => (
+    <div
+      className={`
       ${blur} bg-white/20 
       border border-white/30 
       rounded-2xl shadow-xl
       relative overflow-hidden
       ${className}
-    `}>
+    `}
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-2xl" />
-      <div className="relative z-10">
-        {children}
-      </div>
+      <div className="relative z-10">{children}</div>
     </div>
   );
 
@@ -154,7 +162,7 @@ const SnapScrollingSections = () => {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
+              animationDuration: `${3 + Math.random() * 2}s`,
             }}
           />
         ))}
@@ -162,7 +170,7 @@ const SnapScrollingSections = () => {
 
       {/* Progress bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-black/20 z-50">
-        <div 
+        <div
           className="h-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 transition-all duration-300"
           style={{ width: `${scrollProgress * 100}%` }}
         />
@@ -177,9 +185,10 @@ const SnapScrollingSections = () => {
                 onClick={() => scrollToSection(index)}
                 className={`
                   group relative w-4 h-4 rounded-full transition-all duration-500
-                  ${currentSection === index 
-                    ? 'bg-gradient-to-r from-blue-400 to-purple-400 scale-150 shadow-lg shadow-purple-500/50' 
-                    : 'bg-white/40 hover:bg-white/60 hover:scale-125'
+                  ${
+                    currentSection === index
+                      ? "bg-gradient-to-r from-blue-400 to-purple-400 scale-150 shadow-lg shadow-purple-500/50"
+                      : "bg-white/40 hover:bg-white/60 hover:scale-125"
                   }
                 `}
                 aria-label={`Go to ${section.title}`}
@@ -195,22 +204,32 @@ const SnapScrollingSections = () => {
       <div className="fixed top-6 left-6 z-50">
         <GlassCard className="p-4 w-[60px] h-[60px] flex items-center justify-center">
           <button className="text-white/90 hover:text-white transition-colors duration-300">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </GlassCard>
       </div>
 
       {/* Scroll container */}
-      <div 
+      <div
         ref={containerRef}
         className="h-full overflow-y-auto"
         style={{
-          scrollSnapType: 'y mandatory',
-          scrollBehavior: 'smooth',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
+          scrollSnapType: "y mandatory",
+          scrollBehavior: "smooth",
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
         }}
       >
         <style jsx>{`
@@ -218,7 +237,7 @@ const SnapScrollingSections = () => {
             display: none;
           }
         `}</style>
-        
+
         {sections.map((section, index) => (
           <section
             key={section.id}
@@ -228,18 +247,18 @@ const SnapScrollingSections = () => {
             `}
             style={{
               height: section.height,
-              scrollSnapAlign: 'start',
-              scrollSnapStop: 'always'
+              scrollSnapAlign: "start",
+              scrollSnapStop: "always",
             }}
           >
             {/* Section background effects */}
             <div className="absolute inset-0 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-white/8 to-transparent" />
-              <div 
+              <div
                 className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"
                 style={{
                   transform: `translateY(${(currentSection - index) * 20}px)`,
-                  transition: 'transform 0.8s ease-out'
+                  transition: "transform 0.8s ease-out",
                 }}
               />
             </div>
@@ -248,9 +267,10 @@ const SnapScrollingSections = () => {
               <div
                 className={`
                   transform transition-all duration-1000 ease-out
-                  ${currentSection === index 
-                    ? 'translate-y-0 opacity-100 scale-100' 
-                    : 'translate-y-10 opacity-60 scale-95'
+                  ${
+                    currentSection === index
+                      ? "translate-y-0 opacity-100 scale-100"
+                      : "translate-y-10 opacity-60 scale-95"
                   }
                 `}
               >
@@ -266,17 +286,17 @@ const SnapScrollingSections = () => {
                           {section.title}
                         </h2>
                       </div>
-                      
+
                       <p className="text-lg md:text-xl text-white font-normal leading-relaxed max-w-3xl mx-auto">
                         {section.content}
                       </p>
                     </div>
                   </GlassCard>
                 </div>
-                
+
                 {/* Section-specific content */}
                 <div className="space-y-8">
-                  {section.id === 'hero' && (
+                  {section.id === "hero" && (
                     <div className="space-y-8">
                       <div className="flex justify-center">
                         <GlassCard>
@@ -287,74 +307,110 @@ const SnapScrollingSections = () => {
                         </GlassCard>
                       </div>
                       <div className="animate-bounce flex justify-center">
-                        <svg className="w-8 h-8 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        <svg
+                          className="w-8 h-8 text-white/60"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1}
+                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                          />
                         </svg>
                       </div>
                     </div>
                   )}
-                  
-                  {section.id === 'about' && (
+
+                  {section.id === "about" && (
                     <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                      {['Innovation', 'Quality', 'Excellence'].map((item, i) => (
-                        <GlassCard key={item} className="p-8 hover:scale-105 transition-transform duration-500 text-center" 
-                          style={{ animationDelay: `${i * 0.2}s` }}>
-                          <div className="text-6xl mb-4">✨</div>
-                          <h3 className="text-xl font-bold mb-3 text-white">{item}</h3>
-                          <p className="text-white/90 leading-relaxed font-medium">
-                            Delivering exceptional results through cutting-edge solutions
-                          </p>
-                        </GlassCard>
-                      ))}
+                      {["Innovation", "Quality", "Excellence"].map(
+                        (item, i) => (
+                          <GlassCard
+                            key={item}
+                            className="p-8 hover:scale-105 transition-transform duration-500 text-center"
+                            style={{ animationDelay: `${i * 0.2}s` }}
+                          >
+                            <div className="text-6xl mb-4">✨</div>
+                            <h3 className="text-xl font-bold mb-3 text-white">
+                              {item}
+                            </h3>
+                            <p className="text-white/90 leading-relaxed font-medium">
+                              Delivering exceptional results through
+                              cutting-edge solutions
+                            </p>
+                          </GlassCard>
+                        )
+                      )}
                     </div>
                   )}
-                  
-                  {section.id === 'services' && (
+
+                  {section.id === "services" && (
                     <div className="max-w-4xl mx-auto">
                       <div className="flex flex-wrap justify-center gap-4">
-                        {['Web Design', 'Mobile Apps', 'AI Solutions', 'Cloud Services', 'Consulting'].map((service, i) => (
-                          <GlassCard key={service} className="px-6 py-3 hover:scale-110 transition-all duration-300">
-                            <span className="text-white font-semibold">{service}</span>
+                        {[
+                          "Web Design",
+                          "Mobile Apps",
+                          "AI Solutions",
+                          "Cloud Services",
+                          "Consulting",
+                        ].map((service, i) => (
+                          <GlassCard
+                            key={service}
+                            className="px-6 py-3 hover:scale-110 transition-all duration-300"
+                          >
+                            <span className="text-white font-semibold">
+                              {service}
+                            </span>
                           </GlassCard>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  {section.id === 'portfolio' && (
+                  {section.id === "portfolio" && (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                       {[1, 2, 3, 4, 5, 6].map((item) => (
-                        <GlassCard key={item} className="aspect-square p-6 hover:scale-105 transition-transform duration-500 group">
+                        <GlassCard
+                          key={item}
+                          className="aspect-square p-6 hover:scale-105 transition-transform duration-500 group"
+                        >
                           <div className="h-full flex items-center justify-center">
                             <div className="text-center">
-                              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎨</div>
-                              <h3 className="text-lg font-bold text-white">Project {item}</h3>
+                              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
+                                🎨
+                              </div>
+                              <h3 className="text-lg font-bold text-white">
+                                Project {item}
+                              </h3>
                             </div>
                           </div>
                         </GlassCard>
                       ))}
                     </div>
                   )}
-                  
-                  {section.id === 'contact' && (
+
+                  {section.id === "contact" && (
                     <div className="max-w-2xl mx-auto">
                       <GlassCard className="p-8">
                         <div className="space-y-6">
                           <div className="grid md:grid-cols-2 gap-4">
-                            <input 
-                              type="text" 
-                              placeholder="Your Name" 
+                            <input
+                              type="text"
+                              placeholder="Your Name"
                               className="px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none"
                             />
-                            <input 
-                              type="email" 
-                              placeholder="Your Email" 
+                            <input
+                              type="email"
+                              placeholder="Your Email"
                               className="px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none"
                             />
                           </div>
-                          <textarea 
-                            placeholder="Your Message" 
-                            rows="4"
+                          <textarea
+                            placeholder="Your Message"
+                            rows={4}
                             className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none resize-none"
                           />
                           <div className="flex justify-center">
@@ -368,21 +424,29 @@ const SnapScrollingSections = () => {
                       </GlassCard>
                     </div>
                   )}
-                  
-                  {section.id === 'footer' && (
+
+                  {section.id === "footer" && (
                     <div className="space-y-8 max-w-2xl mx-auto">
                       <GlassCard className="p-6">
                         <div className="flex justify-center gap-8 text-lg">
-                          {['Privacy', 'Terms', 'Support'].map((item) => (
-                            <a key={item} href="#" className="hover:text-blue-300 transition-colors duration-300 font-light">
+                          {["Privacy", "Terms", "Support"].map((item) => (
+                            <a
+                              key={item}
+                              href="#"
+                              className="hover:text-blue-300 transition-colors duration-300 font-light"
+                            >
                               {item}
                             </a>
                           ))}
                         </div>
                       </GlassCard>
                       <div className="space-y-3 text-white/60 text-center">
-                        <p className="text-sm font-light">© 2024 Premium Design Studio</p>
-                        <p className="text-xs opacity-50">Crafted with ❤️ using Apple Glass Design</p>
+                        <p className="text-sm font-light">
+                          © 2024 Premium Design Studio
+                        </p>
+                        <p className="text-xs opacity-50">
+                          Crafted with ❤️ using Apple Glass Design
+                        </p>
                       </div>
                     </div>
                   )}
@@ -395,7 +459,11 @@ const SnapScrollingSections = () => {
 
       {/* Floating section indicator */}
       <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
-        <GlassCard className={`px-6 py-3 transition-all duration-300 ${isScrolling ? 'opacity-100' : 'opacity-70'}`}>
+        <GlassCard
+          className={`px-6 py-3 transition-all duration-300 ${
+            isScrolling ? "opacity-100" : "opacity-70"
+          }`}
+        >
           <div className="flex items-center gap-3 text-white/90 whitespace-nowrap">
             <span className="text-sm font-light">
               {sections[currentSection]?.title}
@@ -405,7 +473,7 @@ const SnapScrollingSections = () => {
                 <div
                   key={i}
                   className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                    i === currentSection ? 'bg-blue-400' : 'bg-white/30'
+                    i === currentSection ? "bg-blue-400" : "bg-white/30"
                   }`}
                 />
               ))}
