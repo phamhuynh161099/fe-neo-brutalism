@@ -106,6 +106,7 @@ function TimelineSection() {
         className={`
               relative w-full flex items-center justify-center text-white
               h-[100vh]
+              bg-[url('https://www.hsenterprise.co.kr/img/business-bg.webp')] bg-cover bg-center bg-no-repeat
               transition-all duration-1000
             `}
         style={{

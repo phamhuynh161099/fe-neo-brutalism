@@ -7,6 +7,7 @@ import AboutUsSection from "./_components/about-us-section";
 import OurusersSaySection from "./_components/our-users-say-section";
 import TimelineSection from "./_components/timeline-section";
 import OurServiceSection from "./_components/our-service-section";
+import LeadershipSection from "./_components/leadership-section";
 
 const SnapScrollingSections = () => {
   const containerRef = useRef(null);
@@ -265,6 +266,7 @@ const SnapScrollingSections = () => {
         <AboutUsSection />
         <OurServiceSection />
         <TimelineSection />
+        <LeadershipSection />
         <OurusersSaySection />
         {sections.map((section, index) => (
           <section
