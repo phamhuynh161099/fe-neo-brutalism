@@ -239,7 +239,6 @@ const SnapScrollingSections = () => {
           }
         `}</style>
 
-      
         {sections.map((section, index) => (
           <section
             key={section.id}
@@ -489,19 +488,21 @@ const SnapScrollingSections = () => {
                               </div>
                             </div>
 
-                            {[].map((column, index) => (
+                            {[].map((column: any, index) => (
                               <div key={index} className="space-y-4">
                                 <h4 className="text-xl font-semibold mb-4 text-white">
                                   {column.title}
                                 </h4>
                                 <ul className="space-y-3">
-                                  {column.links.map((link, linkIndex) => (
-                                    <li key={linkIndex}>
-                                      <button className="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 transform inline-block">
-                                        {link}
-                                      </button>
-                                    </li>
-                                  ))}
+                                  {column.links.map(
+                                    (link: any, linkIndex: any) => (
+                                      <li key={linkIndex}>
+                                        <button className="text-gray-300 hover:text-white transition-colors duration-300 hover:translate-x-1 transform inline-block">
+                                          {link}
+                                        </button>
+                                      </li>
+                                    )
+                                  )}
                                 </ul>
                               </div>
                             ))}

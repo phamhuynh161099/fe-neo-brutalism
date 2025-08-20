@@ -6,6 +6,7 @@ import "../../../../public/css/lading.css";
 import AboutUsSection from "./_components/about-us-section";
 import OurusersSaySection from "./_components/our-users-say-section";
 import TimelineSection from "./_components/timeline-section";
+import OurServiceSection from "./_components/our-service-section";
 
 const SnapScrollingSections = () => {
   const containerRef = useRef(null);
@@ -262,8 +263,9 @@ const SnapScrollingSections = () => {
         `}</style> */}
         <MainSection />
         <AboutUsSection />
-        <OurusersSaySection />
+        <OurServiceSection />
         <TimelineSection />
+        <OurusersSaySection />
         {sections.map((section, index) => (
           <section
             key={section.id}
