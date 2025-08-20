@@ -30,7 +30,7 @@ export const TestimonialsColumn = (props: {
                   i: number
                 ) => (
                   <div
-                    className="p-10 rounded-3xl border shadow-md shadow-sky-300/50 shadow-primary/10 max-w-xs w-full cursor-pointer"
+                    className="glass p-10 rounded-3xl border shadow-md shadow-sky-300/50 shadow-primary/10 max-w-xs w-full cursor-pointer"
                     key={i}
                   >
                     <div className="text-black">{text}</div>

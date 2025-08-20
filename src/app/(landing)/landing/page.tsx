@@ -167,7 +167,7 @@ const SnapScrollingSections = () => {
   }: any) => (
     <div
       className={`
-      ${blur} bg-white/20 
+      ${blur} bg-gray-400/30 
       border border-white/30 
       rounded-2xl shadow-xl
       relative overflow-hidden
@@ -207,7 +207,7 @@ const SnapScrollingSections = () => {
 
       {/* Navigation glass panel */}
       <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50">
-        <GlassCard className="p-4 flex flex-col gap-4 min-w-[60px]">
+        <GlassCard className="!px-2 py-4 flex flex-col gap-4 min-w-[50px] !border-1 !border-black/40 !shadow-md">
           {sections.map((section, index) => (
             <div key={index} className="flex justify-center">
               <button
@@ -231,7 +231,7 @@ const SnapScrollingSections = () => {
 
       {/* Floating menu button */}
       <div className="fixed top-6 left-6 z-50">
-        <GlassCard className="p-4 w-[60px] h-[60px] flex items-center justify-center">
+        <GlassCard className="p-4 w-[60px] h-[60px] flex items-center justify-center !border-1 !border-black/40 !shadow-md">
           <button className="text-white/90 hover:text-white transition-colors duration-300">
             <svg
               className="w-6 h-6"
@@ -360,12 +360,12 @@ const SnapScrollingSections = () => {
       {/* Floating section indicator */}
       <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
         <GlassCard
-          className={`px-6 py-3 transition-all duration-300 ${
+          className={`!border-1 !border-black/40 !shadow-md px-6 py-3 transition-all duration-300 ${
             isScrolling ? "opacity-100" : "opacity-70"
           }`}
         >
           <div className="flex items-center gap-3 text-white/90 whitespace-nowrap">
-            <span className="text-sm font-light">
+            <span className="text-sm text-black font-bold">
               {sections[currentSection]?.title}
             </span>
             <div className="flex gap-1 ml-2">
