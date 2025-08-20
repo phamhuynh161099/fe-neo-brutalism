@@ -338,7 +338,7 @@ const ScrollExpandMedia = ({
                     )}
                     {scrollToExpand && (
                       <p
-                        className="text-blue-200 font-medium text-center"
+                        className="tfont-medium text-center mt-2 glass px-4 py-2 text-white/80"
                         style={{ transform: `translateX(${textTranslateX}vw)` }}
                       >
                         {scrollToExpand}

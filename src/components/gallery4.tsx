@@ -128,9 +128,13 @@ const Gallery4 = ({
                 carouselApi?.scrollPrev();
               }}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto glass p-6"
+              style={{
+                borderColor: "black",
+                borderWidth: "2px",
+              }}
             >
-              <ArrowLeft className="size-5" />
+              <ArrowLeft className="size-8" />
             </Button>
             <Button
               size="icon"
@@ -139,9 +143,13 @@ const Gallery4 = ({
                 carouselApi?.scrollNext();
               }}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto glass p-6"
+              style={{
+                borderColor: "black",
+                borderWidth: "2px",
+              }}
             >
-              <ArrowRight className="size-5" />
+              <ArrowRight className="size-8" />
             </Button>
           </div>
         </div>

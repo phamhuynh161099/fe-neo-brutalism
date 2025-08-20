@@ -1,8 +1,11 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import MainSection from "./_components/main-section";
 
 import "../../../../public/css/lading.css";
+import "../../../../public/css/liquid-glass.css";
+
 import AboutUsSection from "./_components/about-us-section";
 import OurusersSaySection from "./_components/our-users-say-section";
 import TimelineSection from "./_components/timeline-section";
@@ -17,63 +20,64 @@ const SnapScrollingSections = () => {
 
   const sections = [
     {
-      id: "1",
+      id: "main",
       title: "Welcome to the Future",
-      subtitle: "Experience seamless design",
-      content: "Discover innovation at its finest with cutting-edge technology",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
+      bgColor: "",
     },
     {
-      id: "2",
+      id: "about-us",
       title: "Welcome to the Future",
-      subtitle: "Experience seamless design",
-      content: "Discover innovation at its finest with cutting-edge technology",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
+      bgColor: "",
     },
     {
-      id: "hero",
+      id: "our-service",
       title: "Welcome to the Future",
-      subtitle: "Experience seamless design",
-      content: "Discover innovation at its finest with cutting-edge technology",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor: "bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900",
+      bgColor: "",
     },
     {
-      id: "about",
-      title: "About Innovation",
-      subtitle: "Crafting digital experiences",
-      content:
-        "We blend creativity with technology to create extraordinary solutions",
+      id: "timeline",
+      title: "Welcome to the Future",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor: "bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900",
+      bgColor: "",
     },
     {
-      id: "services",
-      title: "Premium Services",
-      subtitle: "Excellence in every detail",
-      content: "From concept to completion, we deliver world-class solutions",
+      id: "leadership",
+      title: "Welcome to the Future",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor: "bg-gradient-to-br from-orange-900 via-red-900 to-pink-900",
+      bgColor: "",
     },
     {
-      id: "portfolio",
-      title: "Our Portfolio",
-      subtitle: "Showcasing excellence",
-      content: "A collection of our finest work and achievements",
+      id: "our-users-say",
+      title: "Welcome to the Future",
+      subtitle: "",
+      content: "",
       height: "100vh",
-      bgColor:
-        "bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900",
+      bgColor: "",
     },
     {
-      id: "contact",
-      title: "Get In Touch",
-      subtitle: "Start your journey",
-      content: "Ready to transform your vision into reality?",
-      height: "100vh",
-      bgColor: "bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900",
+      id: "footer",
+      title: "Thank You",
+      subtitle: "Stay connected",
+      content: "Follow us for more incredible experiences",
+      height: "50vh",
+      bgColor: "bg-gradient-to-br from-black via-gray-900 to-slate-900",
     },
+  ];
+
+  const sections_need_render = [
     {
       id: "footer",
       title: "Thank You",
@@ -124,7 +128,7 @@ const SnapScrollingSections = () => {
 
       scrollTimeout = setTimeout(() => {
         setIsScrolling(false);
-      }, 150);
+      }, 0);
     };
 
     container.addEventListener("scroll", handleScroll);
@@ -257,18 +261,13 @@ const SnapScrollingSections = () => {
           msOverflowStyle: "none",
         }}
       >
-        {/* <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style> */}
         <MainSection />
         <AboutUsSection />
         <OurServiceSection />
         <TimelineSection />
         <LeadershipSection />
         <OurusersSaySection />
-        {sections.map((section, index) => (
+        {sections_need_render.map((section, index) => (
           <section
             key={section.id}
             className={`
@@ -326,135 +325,6 @@ const SnapScrollingSections = () => {
 
                 {/* Section-specific content */}
                 <div className="space-y-8">
-                  {section.id === "hero" && (
-                    <div className="space-y-8">
-                      <div className="flex justify-center">
-                        <GlassCard>
-                          <button className="px-12 py-4 text-white font-medium text-lg hover:scale-105 transition-transform duration-300">
-                            Explore Now
-                            <span className="ml-2">→</span>
-                          </button>
-                        </GlassCard>
-                      </div>
-                      <div className="animate-bounce flex justify-center">
-                        <svg
-                          className="w-8 h-8 text-white/60"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1}
-                            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* {section.id === "about" && (
-                    <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                      {["Innovation", "Quality", "Excellence"].map(
-                        (item, i) => (
-                          <GlassCard
-                            key={item}
-                            className="p-8 hover:scale-105 transition-transform duration-500 text-center"
-                            style={{ animationDelay: `${i * 0.2}s` }}
-                          >
-                            <div className="text-6xl mb-4">✨</div>
-                            <h3 className="text-xl font-bold mb-3 text-white">
-                              {item}
-                            </h3>
-                            <p className="text-white/90 leading-relaxed font-medium">
-                              Delivering exceptional results through
-                              cutting-edge solutions
-                            </p>
-                          </GlassCard>
-                        )
-                      )}
-                    </div>
-                  )}
-
-                  {section.id === "services" && (
-                    <div className="max-w-4xl mx-auto">
-                      <div className="flex flex-wrap justify-center gap-4">
-                        {[
-                          "Web Design",
-                          "Mobile Apps",
-                          "AI Solutions",
-                          "Cloud Services",
-                          "Consulting",
-                        ].map((service, i) => (
-                          <GlassCard
-                            key={service}
-                            className="px-6 py-3 hover:scale-110 transition-all duration-300"
-                          >
-                            <span className="text-white font-semibold">
-                              {service}
-                            </span>
-                          </GlassCard>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {section.id === "portfolio" && (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                      {[1, 2, 3, 4, 5, 6].map((item) => (
-                        <GlassCard
-                          key={item}
-                          className="aspect-square p-6 hover:scale-105 transition-transform duration-500 group"
-                        >
-                          <div className="h-full flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
-                                🎨
-                              </div>
-                              <h3 className="text-lg font-bold text-white">
-                                Project {item}
-                              </h3>
-                            </div>
-                          </div>
-                        </GlassCard>
-                      ))}
-                    </div>
-                  )}
-
-                  {section.id === "contact" && (
-                    <div className="max-w-2xl mx-auto">
-                      <GlassCard className="p-8">
-                        <div className="space-y-6">
-                          <div className="grid md:grid-cols-2 gap-4">
-                            <input
-                              type="text"
-                              placeholder="Your Name"
-                              className="px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none"
-                            />
-                            <input
-                              type="email"
-                              placeholder="Your Email"
-                              className="px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none"
-                            />
-                          </div>
-                          <textarea
-                            placeholder="Your Message"
-                            rows={4}
-                            className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-white/50 backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all outline-none resize-none"
-                          />
-                          <div className="flex justify-center">
-                            <GlassCard>
-                              <button className="px-10 py-4 text-white font-medium hover:scale-105 transition-transform duration-300">
-                                Send Message ✨
-                              </button>
-                            </GlassCard>
-                          </div>
-                        </div>
-                      </GlassCard>
-                    </div>
-                  )}
-
                   {section.id === "footer" && (
                     <div className="space-y-8 max-w-2xl mx-auto">
                       <GlassCard className="p-6">
@@ -479,7 +349,7 @@ const SnapScrollingSections = () => {
                         </p>
                       </div>
                     </div>
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>
