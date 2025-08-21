@@ -7,49 +7,44 @@ const demoData: Gallery4Props = {
     "Discover how leading companies and developers are leveraging modern web technologies to build exceptional digital experiences. These case studies showcase real-world applications and success stories.",
   items: [
     {
-      id: "shadcn-ui",
-      title: "shadcn/ui: Building a Modern Component Library",
+      id: "hs-connect",
+      title: "HS Connect: Unified Digital Workspace Platform",
       description:
-        "Explore how shadcn/ui revolutionized React component libraries by providing a unique approach to component distribution and customization, making it easier for developers to build beautiful, accessible applications.",
-      href: "https://ui.shadcn.com",
-      image:
-        "https://images.unsplash.com/photo-1551250928-243dc937c49d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjN8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
+        "Khám phá nền tảng kết nối doanh nghiệp all-in-one của chúng tôi, tích hợp CRM, ERP và công cụ collaboration vào một giao diện duy nhất, giúp tăng 40% hiệu suất làm việc và hợp lý hóa quy trình vận hành.",
+      href: "https://connect.hsdigital.com",
+      image: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=1974&auto=format&fit=crop",
     },
     {
-      id: "tailwind",
-      title: "Tailwind CSS: The Utility-First Revolution",
+      id: "aix-dashboard",
+      title: "HS AIDashboard: AI-Powered Business Intelligence",
       description:
-        "Discover how Tailwind CSS transformed the way developers style their applications, offering a utility-first approach that speeds up development while maintaining complete design flexibility.",
-      href: "https://tailwindcss.com",
-      image:
-        "https://images.unsplash.com/photo-1551250928-e4a05afaed1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjR8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
+        "Hệ thống dashboard thông minh ứng dụng AI để phân tích dữ liệu thời gian thực, dự báo xu hướng và đưa ra insights hành động, giúp nhà quản trị đưa ra quyết định dựa trên dữ liệu chính xác.",
+      href: "https://ai.hsdigital.com",
+      image: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=1974&auto=format&fit=crop",
     },
     {
-      id: "astro",
-      title: "Astro: The All-in-One Web Framework",
+      id: "cloud-secure",
+      title: "HS CloudSecure: Next-Gen Cybersecurity Suite",
       description:
-        "Learn how Astro's innovative 'Islands Architecture' and zero-JS-by-default approach is helping developers build faster websites while maintaining rich interactivity where needed.",
-      href: "https://astro.build",
-      image:
-        "https://images.unsplash.com/photo-1536735561749-fc87494598cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxNzd8fHx8fHwyfHwxNzIzNjM0NDc0fA&ixlib=rb-4.0.3&q=80&w=1080",
+        "Bộ giải pháp bảo mật đám mây toàn diện, sử dụng machine learning để phát hiện và phản ứng với các mối đe dọa zero-day, bảo vệ dữ liệu quan trọng của doanh nghiệp 24/7.",
+      href: "https://cloudsecure.hsdigital.com",
+      image: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=1974&auto=format&fit=crop",
     },
     {
-      id: "react",
-      title: "React: Pioneering Component-Based UI",
+      id: "omni-channel",
+      title: "HS OmniChannel: Customer Engagement Platform",
       description:
-        "See how React continues to shape modern web development with its component-based architecture, enabling developers to build complex user interfaces with reusable, maintainable code.",
-      href: "https://react.dev",
-      image:
-        "https://images.unsplash.com/photo-1548324215-9133768e4094?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMzF8fHx8fHwyfHwxNzIzNDM1MzA1fA&ixlib=rb-4.0.3&q=80&w=1080",
+        "Nền tảng tiếp thị và chăm sóc khách hàng đa kênh, giúp doanh nghiệp cá nhân hóa trải nghiệm khách hàng trên mọi điểm chạm từ website, mobile app, đến social media và email.",
+      href: "https://omnichannel.hsdigital.com",
+      image: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=1974&auto=format&fit=crop",
     },
     {
-      id: "nextjs",
-      title: "Next.js: The React Framework for Production",
+      id: "iot-suite",
+      title: "HS IoT Suite: Smart Industrial Automation",
       description:
-        "Explore how Next.js has become the go-to framework for building full-stack React applications, offering features like server components, file-based routing, and automatic optimization.",
-      href: "https://nextjs.org",
-      image:
-        "https://images.unsplash.com/photo-1550070881-a5d71eda5800?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjV8fHx8fHwyfHwxNzIzNDM1Mjk4fA&ixlib=rb-4.0.3&q=80&w=1080",
+        "Giải pháp công nghiệp 4.0 kết nối thiết bị, cảm biến và dữ liệu sản xuất vào một nền tảng thống nhất, tối ưu hóa hiệu suất vận hành và bảo trì dự đoán cho nhà máy thông minh.",
+      href: "https://iot.hsdigital.com",
+      image: "https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?q=80&w=1974&auto=format&fit=crop",
     },
   ],
 };
@@ -73,8 +68,6 @@ function LeadershipSection() {
         <div className="absolute inset-0 overflow-hidden">
           <Gallery4 {...demoData} />;
         </div>
-
-       
       </section>
     </>
   );
