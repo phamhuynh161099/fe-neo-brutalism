@@ -325,7 +325,7 @@ const SnapScrollingSections = () => {
 
                 {/* Section-specific content */}
                 <div className="space-y-8">
-                  {section.id === "footer" && (
+                  {/* {section.id === "footer" && (
                     <div className="space-y-8 max-w-2xl mx-auto">
                       <GlassCard className="p-6">
                         <div className="flex justify-center gap-8 text-lg">
@@ -349,7 +349,7 @@ const SnapScrollingSections = () => {
                         </p>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
