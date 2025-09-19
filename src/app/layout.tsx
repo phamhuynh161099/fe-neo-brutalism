@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import "../../public/libs/tabulator-master/dist/css/tabulator.min.css";
+import "../../public/libs/tabulator-master/dist/js/tabulator.min.js";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,6 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* Load jQuery trước */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

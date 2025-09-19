@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+
+@import "jquery-ui-pack/jquery-ui.css";
+@import "jquery-ui-pack/jquery-ui.structure.css";
+
+@import "jquery-ui-pack/jquery-ui.theme.css";
+
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
