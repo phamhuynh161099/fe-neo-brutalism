@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Script from "next/script";
-import tTwoEvaluationApi from "../../../../../apis/t2-evaluation.api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import { useEffect, useRef, useState } from "react";
+import { reactFormatter } from "react-tabulator";
+import tTwoEvaluationApi from "../../../../../apis/t2-evaluation.api";
 import "../../../../../public/css/test-tabulator/custom.css";
 
 const PADDING_IN = 16;
@@ -22,6 +21,378 @@ function TablePage() {
   const [mainFilter, setMainFilter] = useState<{ division: string }>({
     division: "HWA",
   });
+
+  //* React Tablutor
+  const GenerateTablutorButton = (props: any) => {
+    const rowData = props.cell._cell.row.data;
+    const handleClickDelete = () => {
+      console.log(">>>rowData", rowData);
+    };
+
+    return (
+      <>
+        <button
+          className="ml-1 px-2 bg-red-500 rounded-sm cursor-pointer"
+          onClick={() => handleClickDelete()}
+        >
+          Delete
+        </button>
+      </>
+    );
+  };
+  let columns = [
+    {
+      title: "DIVISION",
+      field: "division",
+      hozAlign: "left",
+      width: 160,
+      //* filter dạng select
+      headerFilter: "list" as any,
+      headerFilterParams: { valuesLookup: true, clearable: true } as any,
+      //*
+    },
+    {
+      title: "SUPPLIER",
+      field: "supplier",
+      hozAlign: "left",
+      width: 160,
+
+      headerFilter: "input",
+      // editor: "input",
+      // editable: true,
+    },
+    {
+      formatter: reactFormatter(<GenerateTablutorButton />),
+      width: 100,
+      hozAlign: "center",
+    },
+    {
+      title: "MATERIAL CATEGORY",
+      field: "material_category",
+      hozAlign: "left",
+      width: 160,
+      // editor: "input",
+      // editable: true,
+      //* filter dạng select
+      headerFilter: "list" as any,
+      headerFilterParams: { valuesLookup: true, clearable: true } as any,
+      //*
+    },
+    {
+      title: "MATERIAL SUB CATEGORY",
+      field: "material_sub_category",
+      hozAlign: "left",
+      width: 160,
+      headerFilter: "input",
+      // editor: "input",
+      // editable: true,
+    },
+    {
+      title: "RANK",
+      field: "rank",
+      hozAlign: "right",
+      width: 160,
+
+      headerFilter: "input",
+      // editor: "input",
+      // editable: true,
+    },
+
+    //* A SPIKE
+    {
+      title: "ADIDAS SPIKE",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "a_spike_achieved",
+          hozAlign: "right",
+          width: 160,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+        // {
+        //   title: "Max Pts",
+        //   field: "a_spike_max",
+        //   hozAlign: "right",
+        //   width: 160,
+
+        //   headerFilter: "input",
+        //   // editor: "input",
+        //   // editable: true,
+        // },
+      ],
+    },
+
+    //* H_P DELIVERY
+    {
+      title: "HWASEUNG-PRODUCTION DELIVERY",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_p_delivery_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* H_P QUALITY
+    {
+      title: "HWASEUNG-PRODUCTION QUALITY",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_p_quality_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+        // {
+        //   title: "Max Pts",
+        //   field: "h_p_quality_max",
+        //   hozAlign: "right",
+        //   width: 160,
+
+        //   headerFilter: "input",
+        //   // editor: "input",
+        //   // editable: true,
+        // },
+      ],
+    },
+
+    //* H_P COLLABORATION
+    {
+      title: "HWASEUNG-PRODUCTION COLLABORATION",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_p_collaboration_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+        // {
+        //   title: "Max Pts",
+        //   field: "h_p_collaboration_max",
+        //   hozAlign: "right",
+        //   width: 160,
+
+        //   headerFilter: "input",
+        //   // editor: "input",
+        //   // editable: true,
+        // },
+      ],
+    },
+
+    //* H D DELIVERY
+    {
+      title: "HWASEUNG-DEVELOPMENT DELIVERY",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_d_delivery_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* H D QUALITY
+    {
+      title: "HWASEUNG-DEVELOPMENT QUALITY",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_d_quality_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* H D COLLABORATION
+    {
+      title: "HWASEUNG-DEVELOPMENT COLLABORATION",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_d_collaboration_achieved",
+          hozAlign: "right",
+          width: 360,
+          headerFilter: "input",
+        },
+      ],
+    },
+
+    //* TOTAL
+    {
+      title: "TOTAL",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "h_d_total_achieved",
+          hozAlign: "right",
+          width: 160,
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //====================
+    //* O SPIKE
+    {
+      title: "OVERALL SPIKE",
+      headerHozAlign: "center",
+      columns: [
+        //* O SPIKE
+        {
+          title: "Pts Achieved",
+          field: "o_spike_achieved",
+          hozAlign: "right",
+          width: 160,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O HWASEUNG
+    {
+      title: "OVERALL HWASEUNG",
+      headerHozAlign: "center",
+      columns: [
+        //* O HWASEUNG
+        {
+          title: "Pts Achieved",
+          field: "o_hwaseung_achieved",
+          hozAlign: "right",
+          width: 160,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O PRODUCTION
+    {
+      title: "OVERALL PRODUCTION",
+      headerHozAlign: "center",
+      columns: [
+        //* O PRODUCTION
+        {
+          title: "Pts Achieved",
+          field: "o_production_achieved",
+          hozAlign: "right",
+          width: 180,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O DEVELOPMENT
+    {
+      title: "OVERALL DEVELOPMENT",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "o_development_achieved",
+          hozAlign: "right",
+          width: 180,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O DELIVERY
+    {
+      title: "OVERALL DELIVERY",
+      headerHozAlign: "center",
+      columns: [
+        //* O DELIVERY
+        {
+          title: "Pts Achieved",
+          field: "o_delivery_achieved",
+          hozAlign: "right",
+          width: 160,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O QUALITY
+    {
+      title: "OVERALL QUALITY",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "o_quality_achieved",
+          hozAlign: "right",
+          width: 160,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+
+    //* O COLLABORATION
+    {
+      title: "OVERALL COLLABORATION",
+      headerHozAlign: "center",
+      columns: [
+        {
+          title: "Pts Achieved",
+          field: "o_collaboration_achieved",
+          hozAlign: "right",
+          width: 160,
+
+          headerFilter: "input",
+          // editor: "input",
+          // editable: true,
+        },
+      ],
+    },
+  ];
 
   const initializeTable = () => {
     // @ts-ignore
@@ -162,427 +533,3 @@ function TablePage() {
 }
 
 export default TablePage;
-
-let columns = [
-  {
-    title: "DIVISION",
-    field: "division",
-    hozAlign: "left",
-    width: 160,
-    //* filter dạng select
-    headerFilter: "list" as any,
-    headerFilterParams: { valuesLookup: true, clearable: true } as any,
-    //*
-  },
-  {
-    title: "SUPPLIER",
-    field: "supplier",
-    hozAlign: "left",
-    width: 160,
-
-    headerFilter: "input",
-    // editor: "input",
-    // editable: true,
-  },
-  {
-    title: "-",
-    width: 150,
-    hozAlign: "center",
-  },
-  {
-    title: "MATERIAL CATEGORY",
-    field: "material_category",
-    hozAlign: "left",
-    width: 160,
-    // editor: "input",
-    // editable: true,
-    //* filter dạng select
-    headerFilter: "list" as any,
-    headerFilterParams: { valuesLookup: true, clearable: true } as any,
-    //*
-  },
-  {
-    title: "MATERIAL SUB CATEGORY",
-    field: "material_sub_category",
-    hozAlign: "left",
-    width: 160,
-    headerFilter: "input",
-    // editor: "input",
-    // editable: true,
-  },
-  {
-    title: "RANK",
-    field: "rank",
-    hozAlign: "right",
-    width: 160,
-
-    headerFilter: "input",
-    // editor: "input",
-    // editable: true,
-  },
-
-  //* A SPIKE
-  {
-    title: "ADIDAS SPIKE",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "a_spike_achieved",
-        hozAlign: "right",
-        width: 160,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "a_spike_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* H_P DELIVERY
-  {
-    title: "HWASEUNG-PRODUCTION DELIVERY",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_p_delivery_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "h_p_delivery_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* H_P QUALITY
-  {
-    title: "HWASEUNG-PRODUCTION QUALITY",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_p_quality_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "h_p_quality_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* H_P COLLABORATION
-  {
-    title: "HWASEUNG-PRODUCTION COLLABORATION",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_p_collaboration_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "h_p_collaboration_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* H D DELIVERY
-  {
-    title: "HWASEUNG-DEVELOPMENT DELIVERY",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_d_delivery_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-    ],
-  },
-
-  //* H D QUALITY
-  {
-    title: "HWASEUNG-DEVELOPMENT QUALITY",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_d_quality_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-    ],
-  },
-
-  //* H D COLLABORATION
-  {
-    title: "HWASEUNG-DEVELOPMENT COLLABORATION",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_d_collaboration_achieved",
-        hozAlign: "right",
-        width: 360,
-        headerFilter: "input",
-      },
-    ],
-  },
-
-  //* TOTAL
-  {
-    title: "TOTAL",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "h_d_total_achieved",
-        hozAlign: "right",
-        width: 160,
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "h_d_total_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //====================
-  //* O SPIKE
-  {
-    title: "OVERALL SPIKE",
-    headerHozAlign: "center",
-    columns: [
-      //* O SPIKE
-      {
-        title: "Pts Achieved",
-        field: "o_spike_achieved",
-        hozAlign: "right",
-        width: 160,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "o_spike_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* O HWASEUNG
-  {
-    title: "OVERALL HWASEUNG",
-    headerHozAlign: "center",
-    columns: [
-      //* O HWASEUNG
-      {
-        title: "Pts Achieved",
-        field: "o_hwaseung_achieved",
-        hozAlign: "right",
-        width: 160,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "o_hwaseung_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* O PRODUCTION
-  {
-    title: "OVERALL PRODUCTION",
-    headerHozAlign: "center",
-    columns: [
-      //* O PRODUCTION
-      {
-        title: "Pts Achieved",
-        field: "o_production_achieved",
-        hozAlign: "right",
-        width: 180,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "o_production_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* O DEVELOPMENT
-  {
-    title: "OVERALL DEVELOPMENT",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "o_development_achieved",
-        hozAlign: "right",
-        width: 180,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-    ],
-  },
-
-  //* O DELIVERY
-  {
-    title: "OVERALL DELIVERY",
-    headerHozAlign: "center",
-    columns: [
-      //* O DELIVERY
-      {
-        title: "Pts Achieved",
-        field: "o_delivery_achieved",
-        hozAlign: "right",
-        width: 160,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "o_delivery_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* O QUALITY
-  {
-    title: "OVERALL QUALITY",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "o_quality_achieved",
-        hozAlign: "right",
-        width: 160,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-      // {
-      //   title: "Max Pts",
-      //   field: "o_quality_max",
-      //   hozAlign: "right",
-      //   width: 160,
-
-      //   headerFilter: "input",
-      //   // editor: "input",
-      //   // editable: true,
-      // },
-    ],
-  },
-
-  //* O COLLABORATION
-  {
-    title: "OVERALL COLLABORATION",
-    headerHozAlign: "center",
-    columns: [
-      {
-        title: "Pts Achieved",
-        field: "o_collaboration_achieved",
-        hozAlign: "right",
-        width: 160,
-
-        headerFilter: "input",
-        // editor: "input",
-        // editable: true,
-      },
-    ],
-  },
-];
