@@ -409,7 +409,12 @@ function TablePage() {
         data: [],
         height: height,
         layout: "fitColumns",
-        pagination: true,
+
+        pagination: "local",
+        paginationSize: 6,
+        paginationSizeSelector: [3, 6, 8, 10],
+
+        selectableRows:true,
       });
 
       table.on("headerTap", function (e: any, column: any) {
